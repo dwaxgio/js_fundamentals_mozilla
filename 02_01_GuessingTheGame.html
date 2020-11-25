@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        html {
+            font-family: sens-serif;
+        }
+
+        body {
+            width: 50%;
+            max-width: 800px;
+            min-width: 480px;
+            margin: 0 auto;
+        }
+
+        .lastResult {
+            color: white;
+            padding: 3px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Number guessing game</h1>
+
+    <p>Guess the random number between 1 and 100, you have 10 opportunities and the system will show if the number
+        selected is lower or higher</p>
+
+    <div class="form">
+        <label for="guessField">Adivina el número: </label>
+        <input type="text" id="guessField" class="guessField">
+        <input type="submit" value="Enviar respuesta" class="guessSubmit">
+    </div>
+
+    <div class="resultParas">
+        <p class="guesses"></p>
+        <p class="lastResult"></p>
+        <p class="lowOrHi"></p>
+    </div>
+
+    <script>
+        // 1. Se agregan variables para guardar datos
+        let randomNumber = Math.floor(Math.random() * 100) + 1; // let es idéntico a var, solo que se maneja a nivel local (bloque)
+
+        // variables para almacenar referencia a los parrafos de resultado
+        const guesses = document.querySelector('.guesses'); // las variables const son similares a let, con la particularidad de que su valor no puede ser re definido
+        const lastResult = document.querySelector('.lastResult');
+        const lowOrHi = document.querySelector('.lowOrHi');
+
+        // variables para almacenar referencia a la entrada de texto y al boton enviar
+        const guessSubmit = document.querySelector('.guessSubmit');
+        const guessField = document.querySelector('.guessField');
+
+        let guessCount = 1;
+        let resetButton;
+        guessField.focus(); // Coloca automaticamente cursor en campo guessField
+
+        // 2. Se agregan las funciones
+        function checkGuess() {
+            //alert('Marcador de posición');
+
+            let userGuess = Number(guessField.value);
+            if (guessCount === 1) {
+                guesses.textContent = 'Intentos anteriores: ';
+            }
+            guesses.textContent += userGuess + ' ';
+
+            if (userGuess === randomNumber) {
+                lastResult.textContent = '¡Felicidades! ¡Lo adivinaste!';
+                lastResult.style.backgroundColor = 'green';
+                lowOrHi.textContent = ''; // Se limpia campo
+                setGameOver();
+            } else if (guessCount === 10) {
+                lastResult.textContent = '!!!Fin del juego!!!';
+                setGameOver();
+            } else {
+                lastResult.textContent = '¡Incorrecto!';
+                lastResult.style.backgroundColor = 'red';
+                if (userGuess < randomNumber) {
+                    lowOrHi.textContent = '¡El número es muy bajo!';
+                } else if (userGuess > randomNumber) {
+                    lowOrHi.textContent = '¡El número es muy grande!';
+                }
+            }
+
+
+            guessCount++;
+            guessField.value = '';// Se limpia campo
+            guessField.focus();// Se etablece foco en guessField
+
+        }
+
+        // 3. Se agregan eventos
+        // Se elnaza funcion checkGuess con el boton de formulario guessSubmit
+        guessSubmit.addEventListener('click', checkGuess); // En addEventListener, no es necesario indicar checkGess con ()
+
+        // 4. Se agrega funcion setGameOver
+        function setGameOver() {
+            guessField.disabled = true;
+            guessSubmit.disabled = true;
+            resetButton = document.createElement('button');
+            resetButton.textContent = 'Iniciar nuevo juego';
+            document.body.append(resetButton);
+            resetButton.addEventListener('click', resetGame);
+        }
+
+        // 5. Se agrega funcion resetGame
+        function resetGame() {
+            guessCount = 1; // Se establece variables guessCount en 1
+
+            // Vacia todos los campos de la clase .resultParas
+            const resetParas = document.querySelectorAll('.resultParas p');  // Selecciona todos los elementos de la clase .resultParas
+            for (let i = 0; i < resetParas.length; i++) {
+                resetParas[i].textContent = ''; // Limpia cada uno de los elementos de la clase
+            }
+
+            resetButton.parentNode.removeChild(resetButton); // Remueve nodo de resetButton
+
+            //Muestra nuevamente fampos
+            guessField.disabled = false;
+            guessSubmit.disabled = false;
+            guessField.value = '';
+            guessField.focus();
+
+            lastResult.style.backgroundColor = 'white';
+
+            // Se genera nuevo número aleatorio
+            randomNumber = Math.floor(Math.random() * 100) + 1;
+        }
+    </script>
+
+    <script>
+        /*
+        // 3. Operadores (probar en consola de navegador)
+        let name = 'Bingo';
+        name;
+        let hello = ' dice hola!';
+        hello;
+        let greeting = '¡' + name + hello;
+        greeting;
+
+        // Operador de asignación mejorada
+        name += ' dice hola!'; // equivalente a name = name + ' dice hola!';
+
+        // exactamente igual
+        5 === 2 + 4 // false
+        'Chris' === 'Bob' // false
+        5 === 2 + 3 // true
+        2 === '2' // false; número versus cadena
+
+        // no es exactamente igual
+        5 !== 2 + 4 // true
+        'Chris' !== 'Bob' // true
+        5 !== 2 + 3 // false
+        2 !== '2' // true; número versus cadena
+
+        6 < 10 // true
+        20 < 10 // false
+
+        6 > 10 // false
+        20 > 10  // true
+        */
+
+
+        /*
+        Ciclos:
+        for (let i = 1 ; i < 21 ; i++) { console.log(i) }
+
+        ¿Que sucedió? Los números 1 a 20 se imprimieron en tu consola. Esto se debió al bucle. Un bucle for toma tres valores (argumentos) de entrada:
+
+            Un valor inicial: En este caso, comenzamos a contar en 1, pero este podría ser cualquier número que desees. También puedes reemplazar la letra i con cualquier nombre que desees, pero por convención se usa i porque es corto y fácil de recordar.
+            Una condición de salida: Aquí hemos especificado i < 21 — el ciclo continuará hasta que i no sea menor que 21. Cuando i llegue a 21, el bucle ya no se ejecutará.
+            Un incremento: Hemos especificado i++, que significa "agrega 1 a i". El ciclo se ejecutará una vez por cada valor de i, hasta que i alcance un valor de 21 (como se explicó anteriormente). En este caso, simplemente imprimimos el valor de i en la consola en cada iteración usando console.log().
+        */
+
+        /*
+        Objetos:
+        guessField.value : indica el valor de variable guesses
+        guessField.value = 'test' : asigna como valor 'test' a la variable guesses
+
+        NOTA: Para los elementos que no tienen la propiedad value (ej los <p>, se usa textContnt)
+        guesses.textContent = '¿Dónde está mi párrafo?';
+
+        guesses.style.backgroundColor = 'yellow';
+        guesses.style.fontSize = '200%';
+        guesses.style.padding = '10px';
+        guesses.style.boxShadow = '3px 3px 6px black';
+        */
+    </script>
+</body>
+
+</html>
