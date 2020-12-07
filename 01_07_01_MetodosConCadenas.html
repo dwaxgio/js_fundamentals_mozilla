@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    
+
+   <script>
+       // Longitud de cadena
+       let browserType = "mozilla";
+       console.log(browserType.length);
+
+       // Extracción de caracteres de cadena
+       console.log(browserType[0]);
+
+       // Extraer último caracter
+        console.log(browserType[browserType.length-1]);
+
+        // Encontrar subcadena dentro de una cadena y extraerla
+        console.log(browserType.indexOf("zilla")); // El método indexOf indica si se encuentra una subcadena dentro de una cadena
+
+        console.log(browserType.indexOf("vanilla")); // si arroja -1, significa que no se encontró subcadena
+
+        if(browserType.indexOf("mozilla") !== -1)
+        {
+            alert("Se encontró la subcadena");
+        }
+
+        // Extraer conociendo indice de inicio y de final
+        console.log(browserType.slice(0,3));
+
+        // Extraer desde indice indicado
+        console.log(browserType.slice(2));
+        console.log(browserType.slice(0));
+
+        // Cambiar todo a minúsculas / mayúsculas
+        let radData = "My Name Is MuD";
+        console.log(radData.toLowerCase());
+        console.log(radData.toUpperCase());
+
+        // Actualizar partes (subcadena) de una cadena
+        console.log(browserType.replace("van", "moz"));
+        // forma correcta
+        browserType = browserType.replace("moz", "van");
+        console.log(browserType);
+   </script>
+</body>
+
+</html>

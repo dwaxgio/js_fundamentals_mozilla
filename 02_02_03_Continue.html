@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <label for="search">Search by contact name: </label>
+    <input id="search" type="text">
+    <button>Search</button>
+
+    <p></p>
+
+    <script>
+        // 1. Definición de variables
+        //var contacts = ['Chris:2232322', 'Sarah:3453456', 'Bill:7654322', 'Mary:9998769', 'Dianne:9384975'];
+
+        var para = document.querySelector("p");
+        var input = document.querySelector("input");
+        var btn = document.querySelector("button");
+
+
+
+        // 2. Evento a botón
+        btn.addEventListener("click", function () {
+            var num = input.value;
+            input.value = "";
+            input.focus();
+            for (var i = 1; i <= num; i++) {
+                var sqRoot = Math.sqrt(i);
+                if (Math.floor(sqRoot) !== sqRoot) {
+                    continue;
+                }
+
+                para.textContent += i + ' ';
+            }
+        });   
+    </script>
+</body>
+
+</html>

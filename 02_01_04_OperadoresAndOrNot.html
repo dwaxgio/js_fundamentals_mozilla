@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // AND &&
+        if (eleccion === 'soleado' && temperatura < 86) {
+            parrafo.textContent = 'Está a ' + temperatura + ' grados afuera — agradable y soleado. Vamos a la playa, o al parque, y comer helado.';
+        } else if (eleccion === 'soleado' && temperatura >= 86) {
+            parrafo.textContent = 'Está a ' + temperatura + ' grados afuera — ¡QUÉ CALOR! Si deseas salir, asegúrate de aplicarte bloqueador solar.';
+        }
+
+        // OR ||
+        if (carritoDeHelados || estadoDeLaCasa == "en llamas") {
+            console.log("Debe salir de la casa rápido");
+        }
+        else {
+            console.log("Mejor quédese en la casa");
+        }
+
+        // NOT !
+        if (!(carritoDeHelados || estadoDeLaCasa === "en llamas")) {
+            console.log("Mejor quédese en la casa");
+        }
+        else {
+            console.log("Debe salir de la casa rápido");
+        }
+
+        // Combinador de operaciones
+        if ((x === 5 || y > 3 || z <= 10) && (logueado || nombreUsuario === "Edward")) {
+            //ejecutar código
+        }
+    </script>
+</body>
+
+</html>

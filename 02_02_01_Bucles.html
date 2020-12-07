@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p></p>
+    <script>
+        
+        // for(var i = 0; i< 100; i++){
+        //     ctx.beginPath();
+        //     ctx.fillStyle = "rgba(255,0,0,0.5)";
+        //     ctx.arc(random(WIDTH), random(HEIGHT), random(50), 0, 2*Math.PI);
+        //     ctx.fill();
+        // }
+
+        // FOR
+        var cats = ['Bill', 'Jeff', 'Pete', 'Biggles', 'Jasmin'];
+        var info = "My cats are called: ";
+        var para = document.querySelector("p");
+
+        for(var i = 0; i < cats.length; i++)
+        {
+            //info += cats[i] + ", ";
+            // Para solucionar problema de coma en el último elemento
+            if(i === cats.length - 1){
+                info += "and " + cats[i] + ".";
+            }
+            else{
+                info += cats[i] + ", ";
+            }
+        }
+
+        para.textContent = info;
+        
+    </script>
+</body>
+</html>

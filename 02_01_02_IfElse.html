@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <label for="clima">Seleccione el tipo de clima:</label>
+    <select id="clima">
+        <option value="">--Haga una elección--</option>
+        <option value="soleado">Soleado</option>
+        <option value="lluvioso">Lluvioso</option>
+        <option value="nevado">Nevado</option>
+        <option value="nublado">Nublado</option>
+    </select>
+
+    <p></p>
+
+    <script>
+        let seleccionar = document.querySelector('select');
+        let parrafo = document.querySelector('p');
+
+        seleccionar.addEventListener('change', establecerClima); // Cuando el elemento cambie, se ejecuta evento
+
+        function establecerClima() {
+            let eleccion = seleccionar.value;
+
+            if (eleccion === 'soleado') {
+                //parrafo.textContent = "El día está soleado";
+                //if anidado (if ... if)
+                let temperatura = 90;
+                if (temperatura < 86) {
+                    parrafo.textContent = 'Está a ' + temperatura + ' grados afuera — agradable y soleado. Vamos a la playa, o al parque, y comer helado.';
+                } else if (temperatura >= 86) {
+                    parrafo.textContent = 'Está a ' + temperatura + ' grados afuera — ¡QUÉ CALOR! Si deseas salir, asegúrate de aplicarte bloqueador solar.';
+                }
+
+                /*
+            // Operador && y || 
+            if(eleccion === 'soleado' && temperatura < 86)
+            {
+                parrafo.textContent = "Esta a " + temperatura + ' grados';
+            } else if(eleccion === "soleado" && temperatura >=86)
+            {
+                parrafo.textContent = "Está a " + temperatura + " grados";
+            }
+            */
+            } else if (eleccion === 'lluvioso') {
+                parrafo.textContent = "El día está lluvioso";
+            } else if (eleccion === "nevado") {
+                parrafo.textContent = "El día está nevado";
+            } else if (eleccion === "nublado") {
+                parrafo.textContent = "El día está nublado";
+            }
+            else {
+                parrafo.textContent = "No hay selección";
+            }
+        }
+    </script>
+</body>
+
+</html>

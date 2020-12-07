@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <script>
+        // Convertir entre matrices y cadenas
+        let myData = 'Manchester,London,Liverpool,Birmingham,Leeds,Carlisle'; // Cadena o array
+        console.log(myData);
+        // 1. Se divide la cadena en cada coma
+        let myArray = myData.split(",");
+        console.log(myArray);
+        // 2. se encuentra longitud de array, y se muestran algunos datos
+        console.log(myArray.length);
+        console.log(myArray[0]);
+        console.log(myArray[2]);
+        console.log(myArray[myArray.length - 1]);
+
+        // Pasar de matriz a cadena con join
+        console.log(myArray);
+        let myNewString = myArray.join(",");
+        console.log(myNewString);
+
+        // Pasar de matriz a cadena con toString()
+        let dogNames = ['Rocket','Flash','Bella','Slugger'];
+        console.log(dogNames);
+        console.log(dogNames.toString());
+
+        // Agregar y eliminar elementos de la matriz
+        let myArray2 = ['Manchester', 'London', 'Liverpool', 'Birmingham', 'Leeds', 'Carlisle'];
+        console.log("myArray2: " + myArray2);
+        //push() inserta elemento
+        myArray2.push("Cardiff");
+        console.log(myArray2);
+        myArray2.push("Bradford", "Brighton");
+        console.log(myArray2);
+        //  Almacenar nueva longitud
+        let newLength = myArray2.push("Bristol");
+        console.log(myArray2);
+        console.log(newLength);
+        //pop() elimina elemento
+        let removedItem = myArray2.pop();
+        console.log(myArray2);
+        console.log(removedItem);
+        let removedItem2 = myArray2.pop(); // pop() no acepta parametros
+        console.log(myArray2);
+        console.log(removedItem2);
+        // Nota: los anteriores métodos afectan al final del array, si se quiere afectar al inicio del array, se usa unshift() y shift() respectivamente
+        // unshift() inserta elemento
+        myArray2.unshift("Edinburgh");        
+        console.log(myArray2);
+        // shift() elimina elemento
+        let removedItem3 = myArray2.shift();
+        console.log(myArray2);
+        console.log(removedItem3);
+
+    </script>
+</body>
+
+</html>
