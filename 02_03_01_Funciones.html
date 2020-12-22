@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>Ejecutar </button>
+    <script>
+        // ej 1
+        let miTexto = 'Soy una cadena de texto!';
+        let nuevaCadena = miTexto.replace('cadena', 'ensalada');
+        console.log(nuevaCadena);
+        // la función de cadena de texto replace() toma una cadena,
+        // reemplaza una palabra por otra, y devuelve
+        // una nueva cadena con el reemplazo hecho.
+
+        // ej 2
+        let miArray = ['Yo', 'amo', 'el', 'chocolate', 'y', 'las', 'ranas'];
+        let armarCadena = miArray.join(" ");
+        console.log(armarCadena);
+        // La función join() toma un array,
+        // une todos sus elementos en una cadena o string
+        // y devuelve esta nueva cadena.
+
+        // ej 3
+        var miNumero = Math.random();
+        console.log(miNumero);
+        // La función Math.random() genera un número aleatorio
+        // entre 0 and 1 y devuelve ese número.
+
+        // Funcion simple
+        function myFunction()
+        {
+            alert("Hello");
+        }
+        myFunction();
+
+        // // Función anónima (sin nombre): Por lo general se programan, cuando va junto a un evento
+        // function()
+        // {
+        //     alert("Hello from anonymous function");
+        // }
+
+        var myButton = document.querySelector("button");
+
+        myButton.onclick = function()
+        {
+            alert("Hello from anonymous function");
+        }
+
+        // Asignar funcion anónima a variable
+        var myGreeting = function()
+        {
+            alert("Hello from variable");
+        }
+
+        var anotherGreeting = function()
+        {
+            alert("Hello from another variable");
+        }
+
+        myGreeting(); // Se invoca funcion
+        anotherGreeting();
+
+        // Mejor asignar nombre directamente a funcion
+
+        
+    </script>
+</body>
+
+</html>
