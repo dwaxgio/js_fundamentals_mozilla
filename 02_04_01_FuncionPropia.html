@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .msgBox {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 242px;
+            background: #eee;
+        }
+
+        .msgBox p {
+            line-height: 1.5;
+            padding: 10px 20px;
+            color: #333;
+            padding-left: 82px;
+            background-position: 25px center;
+            background-repeat: no-repeat;
+        }
+
+        .msgBox button {
+            background: none;
+            border: none;
+            position: absolute;
+            top: 0;
+            right: 0;
+            font-size: 1.1rem;
+            color: #aaa;
+        }
+    </style>
+</head>
+
+<body>
+    <button>Display message box</button>
+    <script>
+        //alert("Hello");
+        let btn = document.querySelector('button');
+        //btn.onclick = displayMessage; // Se indica la función sin paréntesis, ya que no se quiere que se invoque inmediatamente carga la ventana, si no cuando se hace click. cuando incluye paréntesis, se ejecuta automáticamente
+        btn.onclick = function()
+        {
+            displayMessage("Mensaje diferente");
+        }
+
+        function displayMessage(msgText, msgType) {
+            let html = document.querySelector('html');
+
+            let panel = document.createElement('div');
+            panel.setAttribute('class', 'msgBox');
+            html.appendChild(panel);
+
+            let msg = document.createElement('p');
+            msg.textContent = msgText;
+            panel.appendChild(msg);
+
+            let closeBtn = document.createElement('button');
+            closeBtn.textContent = 'x';
+            panel.appendChild(closeBtn);
+
+            closeBtn.onclick = function () {
+                panel.parentNode.removeChild(panel);
+            }
+
+            /* ej construcción html código anterior
+                <div class="msgBox">
+                    <p>This is a message box</p>
+                    <button>x</button>
+                </div>
+            */
+
+            if(msgType === 'warning'){
+                msg.style.backgroundImage = 'url(src/02_04_01_warning.png)';
+                panel.style.backgroundColor = 'red';
+            } else if(msgType === 'chat'){
+                msg.style.backgroundImage = 'url(src/02_04_01_chat.png)';
+                panel.style.backgroundColor = 'aqua';
+            } else{
+                msg.style.paddingLeft = '20px';
+            }
+        }
+
+        //displayMessage(); //Invoca función
+
+    </script>
+</body>
+
+</html>
