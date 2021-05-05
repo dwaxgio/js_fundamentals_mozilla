@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 1. Creación de objeto vacío, dentro de la variable person1
+        var person1 = new Object();
+
+        // //2. Agregar propiedades y método a la variablem mediante notación punto o corchetes
+         person1.name = "Adolf";
+         person1["age"] = 38;
+         person1.greeting = function(){
+            alert("Hi, I'm" + this.name + " and I am " + this.age + " old.");
+        }
+
+        // 2.2 Tambien se puede pasar un objeto literal como parámetro al constructor object
+        var person2  = new Object({
+            name: "Max",
+            age: "49",
+            greeting: function(){
+                alert("Hi, I'm" + this.name + " and I am " + this.age + " old.");
+            }
+        });
+
+        // 3. Método create()
+        var person3 = Object.create(person2);
+        // En consola, probar:
+        //person2.name
+        //person2.greeting()
+
+    </script>
+</body>
+</html>

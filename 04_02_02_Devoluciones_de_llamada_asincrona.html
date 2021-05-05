@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button>Click me</button>
+  <script>
+    const btn = document.querySelector("button");
+    btn.addEventListener("click", () => { // Ejemplo de devolucion de llamada asincrona: primer parametro es tipo de vento que se debe escuchar, el segundo parametro es la funcion de devolucion de llamado que se invoca cuando se activa el evento
+      alert("You clicked me!");
+
+      let pElem = document.createElement("p");
+      pElem.textContent = "This is a newly-added paragraph.";
+      document.body.appendChild(pElem);
+    });
+  </script> 
+</body>
+
+</html>

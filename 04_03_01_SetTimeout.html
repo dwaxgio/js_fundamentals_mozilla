@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // setTimeout(): Ejecuta un bloque de código en particular una vez transcurrido un tiempo específico
+    let myGreeting = setTimeout(function(){
+      alert("Hello, Mr Universe");
+    }, 2000)
+
+    // Sin función anónima, nombrando la función
+    let myGreeting2 = setTimeout(function sayHi(){
+      alert("Hello, Mr Universe 2");
+    }, 10000)
+
+    //Con una función definida por separado
+    function sayHi2(){
+      alert("Hello, Mr Universe 3");
+    }
+
+    let myGreeting3 = setTimeout(sayHi2, 20000);
+
+    // PRACTICA FUNCION APARTE, COMO PARÁMETRO Y COMO FUNCION ANONIMA PARÁMETRO
+    //1. Función aparte
+    function hola(){
+      alert("Hola");
+    }
+
+    let alerta = setTimeout(hola, 1000);
+
+    // 2. Función como parámetro
+    let alerta2 = setTimeout(function hola2(){
+      alert("Hola2");
+    }, 2005);
+
+    // 3. Función anónima como parámetro
+    let alert3 = setTimeout(function(){
+      alert("Hola3");
+    }, 2010);
+  </script>
+</body>
+</html>

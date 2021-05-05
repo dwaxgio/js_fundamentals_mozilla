@@ -1,39 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <title>Random color example — event handler property</title>
-    <style>
-        button {
-            margin: 10px;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
 
 <body>
-    <button>Change color</button>
-    <script>
-        const btn = document.querySelector('button');
-
-        function random(number) {
-            return Math.floor(Math.random() * number);
+    <script>function bgChange(e) {
+            var rndCol = 'rgb(' + random(255) + ',' + random(255) + ',' + random(255) + ')';
+            e.target.style.backgroundColor = rndCol;
+            console.log(e);
         }
 
-        function bgChange() {
-            const rndCol = 'rgb(' + random(255) + ',' + random(255) + ',' + random(255) + ')';
-            document.body.style.backgroundColor = rndCol;
-        }
+        btn.addEventListener('click', bgChange);</script>
 
-        //btn.onclick = bgChange;
-        //btn.onclick = onfocus;
-        //btn.onclick = onblur;
-
-        // La siguiente manera de implementar eventos, permite ejecutar varios para un elemento html, ej un boton con dos eventos que ejecutan dos funciones diferentes
-        btn.addEventListener("click", bgChange);
-        // removeEventListener
-        btn.removeEventListener("click", bgChange);
-    </script>
 </body>
 
 </html>

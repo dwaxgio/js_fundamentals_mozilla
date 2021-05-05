@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>This example requires you to enter commands in your browser's JavaScript console (see <a
+            href="https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_are_browser_developer_tools">What
+            are browser developer tools</a> for more information).</p>
+
+    <script>
+        function Person(first, last, age, gender, interests) {
+            this.name = {
+                "first": first,
+                "last": last
+            };
+            this.age = age;
+            this.gender = gender;
+            this.interests = interests;
+            this.bio = function () {
+                //1. Definir string, conteniendo el texto que se sabe es fijo
+                var string = this.name.first + " " + this.last + " is" + this.age + " years old.";
+                // 2. Definir variable que contendrá el pronombre de la persona he/she
+                var pronoun;
+                // 3. Verificar que genero es
+                if (this.gender === "male" || this.gender === "Male" || this.gender === "MALE" || this.gender === "m" || this.gender === "M") {
+                    pronoun = "He likes ";
+                } else if (this.gender === "female" || this.gender === "Female" || this.gender === "FEMALE" || this.gender === "f" || this.gender === "F") {
+                    pronoun = "She likes ";
+                } else {
+                    pronoun = "They like ";
+                }
+                // 4. Agregar pronoun al final de string
+                string += pronoun; // string = string + pronoun
+                // 5. Usar condicional para estructurar parte final de la segunda sentencia dependiendo del número de intereses
+                if (this.interests.length === 1) {
+                    string += this.interests[0] + ".";
+                } else if (this.interests.length === 2) {
+                    string += this.interests[0] + "and " + this.interests[1] + ".";
+                } else {
+                    // 5.2 Si hay mas de 2 intereses, se ejecuta condicion for, se agrega string seguido de coma, excepto el último, se reemplaza con punto
+                    for (var i = 0; i < interests.length; i++) {
+                        if (i === this.interests.length - 1) {
+                            string += "and " + this.interests[i] + ".";
+                        } else {
+                            string += this.interests[i] + ", ";
+                        }
+                    }
+                }
+                // 6. Finalmente, con string completo, se hace un alert
+                alert(string);
+            }
+            this.greeting = function(){
+                alert("Hi, I'm " + this.name.first + ".");
+            };
+        };
+
+        // Se instancia clase
+        let person1 = new Person("Timmy", "Turner", 8, "neutral", ["magic", "paranormal", "videogames"]);
+    </script>
+</body>
+
+</html>

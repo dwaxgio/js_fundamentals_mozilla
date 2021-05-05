@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            margin: 0;
+        }
+
+        html {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            height: 100%;
+        }
+
+        body {
+            overflow: hidden;
+            height: inherit;
+        }
+
+        h1 {
+            font-size: 2rem;
+            letter-spacing: -1px;
+            position: absolute;
+            margin: 0;
+            top: -4px;
+            right: 5px;
+
+            color: transparent;
+            text-shadow: 0 0 4px white;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>bouncing balls</h1>
+    <canvas></canvas>
+
+    <script>
+        // setup canvas
+
+        const canvas = document.querySelector('canvas'); // Canvas, para dibujo
+        const ctx = canvas.getContext('2d');
+
+        const width = canvas.width = window.innerWidth;
+        const height = canvas.height = window.innerHeight;
+
+        // function to generate random number
+
+        function random(min, max) {
+            var num = Math.floor(Math.random() * (max - min + 1)) + min;
+            return num;
+        }
+
+        // Construccion del objeto pelota: propiedades
+        function Ball(x, y, velX, velY, color, size) {
+            this.x = x; //posición horizontal
+            this.y = y; //posición vertical
+            this.velX = velX; //velocidad horizontal
+            this.velY = velY; //velocidad vertical
+            this.color = color; //color
+            this.size = size; //tamaño
+        }
+        // Métodos:
+        // Dibujado de las pelotas
+        Ball.prototype.draw = function () {
+            ctx.beginPath(); // ctx: contexto 2d definido anteriormente, se empieza a dibujar una forma en canvas
+            ctx.fillStyle = this.color; // define color de forma
+            ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI); // traza un arco, con parametros x e y del centro de la pelota. luego radio size, luego comienzo y final del radio (360° para un circulo completo)
+            ctx.fill();// Finaliza el dibujo, rellena el area de la curva especificada
+        }
+        // NOTA: Probar en consola: var testBall = new Ball(50, 100, 4, 4, 'blue', 10); -- ejecutar testBall.draw() para dibujar circulo
+
+        // Actualizando los datos de la pelota
+        Ball.prototype.update = function () {
+            if ((this.x + this.size) >= width) {
+                this.velX = -(this.velX); // verifica si pelota ha alcanzado el borde del canvas, se invierte direccion, para que se mueva en direccion contraria
+            }
+
+            if ((this.x - this.size) <= 0) {
+                this.velX = -(this.velX); // sale del lado izquierdo
+            }
+
+            if ((this.y + this.size) >= height) {
+                this.velY = -(this.velY);
+            }
+
+            if ((this.y - this.size) <= 0) {
+                this.velY = -(this.velY);
+            }
+
+            this.x += this.velX;
+            this.y += this.velY;
+        }
+        var balls = []; // sitio para guardar las pelotas
+
+        //-- deteccion de colisiones
+        Ball.prototype.collisionDetect = function () {
+            for (var j = 0; j < balls.length; j++) {
+                if (!(this === balls[j])) {
+                    var dx = this.x - balls[j].x;
+                    var dy = this.y - balls[j].y;
+                    var distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < this.size + balls[j].size) {
+                        balls[j].color = this.color = 'rgb(' + random(0, 255) + ',' + random(0, 255) + ',' + random(0, 255) + ')';
+                    }
+                }
+            }
+        }
+        //--
+
+        // bucle de animacion
+        function loop() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.25)';
+            ctx.fillRect(0, 0, width, height); // coloreado del canvas semi negro
+
+            while (balls.length < 25) {
+                var size = random(10, 20); // genera aleatorio de numero de pelotas, se crean hasta menor a 25
+                var ball = new Ball(
+                    // la posición de las pelotas, se dibujará al menos siempre
+                    // como mínimo a un ancho de la pelota de distancia al borde del
+                    // canvas, para evitar errores en el dibujo
+                    random(0 + size, width - size),
+                    random(0 + size, height - size),
+                    random(-7, 7),
+                    random(-7, 7),
+                    'rgb(' + random(0, 255) + ',' + random(0, 255) + ',' + random(0, 255) + ')',
+                    size
+                );
+                balls.push(ball);
+            }
+
+            for (var i = 0; i < balls.length; i++) {
+                balls[i].draw();
+                balls[i].update();
+                balls[i].collisionDetect();
+            }
+
+            requestAnimationFrame(loop); // funcion se llama a si misma (recursiva)
+        }
+        loop();
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <body>
+        <p>This example requires you to enter commands in your browser's JavaScript console (see <a
+                href="https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_are_browser_developer_tools">What
+                are browser developer tools</a> for more information).</p>
+
+        <script>
+            var personaVacio = {} // definiciónn de objeto vacio
+            var persona = {
+                nombre: ["Homero", "Simpson"], // miembro de objeto
+                apellido: ["Simpson"],
+                edad: 40, // miembro de objeto
+                genero: "masculino", // miembro de objeto
+                intereses: ["comer", "tomar"], // miembro de objeto
+                bio: function () {
+                    alert(this.nombre[0] + '' + this.nombre[1] + ' tiene ' + this.edad + ' años. Le gusta ' + this.intereses[0] + ' y ' + this.intereses[1] + '.');
+                },
+                saludo: function () {
+                    alert('Hola, Soy ' + this.nombre[0] + '. '); // this, hace referencia al objeto actual en el que se está escribiendo el código, en este caso, this es equivalente a persona
+                },
+                nombre2: {
+                    primero: "Homer",
+                    segundo: "Jey"
+                }
+            }
+            var nombrePerzonalizado = 'altura';
+            var valorPerzonalizado = '1.75m';
+            persona[nombrePerzonalizado] = valorPerzonalizado;
+
+            /*
+                Ejecutar en consola:
+                    persona.nombre // notación d epunto
+                    persona.nombre[0]
+                    persona.edad
+                    persona.intereses[1]
+                    persona.bio()
+                    persona.saludo()
+
+                    o así
+                        persona['edad']
+                        persona['nombre']['pila']
+            */
+        </script>
+    </body>
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    p{
+      font-family: sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <p class="clock"></p>
+  <script>
+    function displayTime(){
+      let date = new Date();
+      let time = date.toLocaleTimeString();
+      document.querySelector(".clock").textContent = time;
+    }
+
+    displayTime();
+    const createClock = setInterval(displayTime, 1000); // setInterval repite un proceso cada determinado tiempo
+  </script>
+</body>
+</html>

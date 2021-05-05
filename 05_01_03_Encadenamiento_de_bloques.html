@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    fetch("https://github.com/mdn/learning-area/blob/master/javascript/asynchronous/promises/coffee.jpg")
+    .then(response => {
+      if(!response.ok){
+        throw new Error("HTTP error, status:  ${response.stauts}");
+      }
+      else{
+        return response.blob();
+      }
+    })
+    .then(myBlob => {
+      let objectURL = URL.createObjectURL(myBlob);
+      let image = document.createElement("img");
+      image.src = objectURL;
+      document.body.appendChild(image);
+    })
+    .catch(e => {
+      console.log("There has been a problem with the fetch operation: " + e.message);
+    });
+  </script>
+</body>
+</html>

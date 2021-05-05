@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    html{
+      background-color: white;
+      height: 100%;
+    }
+
+    body{
+      height: inherit;
+      background-color: red;
+      margin:0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    div{
+      display: inline-block;
+      font-size: 10rem;
+    }
+  </style>
+</head>
+<body>
+  <div>↻</div>
+  <script>
+    // Store reference to the div element, create a rotate counter and null star and create an uninitialized variable to store the requestAnimationFrame()
+    const spinner = document.querySelector("div");
+    let rotateCount = 0;
+    let startTime = null;
+    let rAF;
+
+    // Create a draw() function
+    function draw(timestamp){
+      if(!startTime){
+        startTime = timestamp;
+      }
+
+      rotateCount = (timestamp - startTime) / 3;
+
+      // If rotateCount gests over 359, set it to 'remainder of dividing by 360'
+      if(rotateCount > 359){
+        rotateCount %=360;
+      }
+
+      // set the rotation of the div to be equal to rateCount degrees
+      spinner.style.transform = "rotate(" + rotateCount + "deg)";
+
+      //Call the next frame in the animation
+      rAF = requestAnimationFrame(draw);
+    }
+
+    draw();
+  </script>
+</body>
+</html>
