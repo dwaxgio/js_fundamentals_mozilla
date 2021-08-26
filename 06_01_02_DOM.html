@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      .highlight {
+        color: white;
+        background-color: black;
+        padding: 10px;
+        width: 250px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <section>
+      <img src="src/coffee.jpg" alt="Texto alternativo de la imagen" />
+      <p>
+        Link para consulta de una imagen
+        <a href="https://www.mozilla.org/">Mozilla</a>
+      </p>
+    </section>
+
+    <script>
+      // 1. Se obtiene elemento de html, y se guarda en variable
+      const link = document.querySelector("a"); // Queryselector selecciona el primer elemento del html que tenga la etiqueta a buscar, ejemplo a
+
+      // 2. Cone lemento, se puede proceder asu manipulación
+      link.textContent = "Descripción de etiqueta <a> modificada";
+      link.href = "https://developer.mozilla.org";
+
+      // 3. Creación y ubicación de nuevos nodos
+      const sect = document.querySelector("section");
+      // 3.2 Creación de nuevo elemento
+      const para = document.createElement("p");
+      para.textContent = "Texto asignado a parrafo creado en script";
+      // 3.3 Se adjunta elemento p a section
+      sect.appendChild(para);
+      // 3.4 Se agrega nodo de tipo texto
+      const text = document.createTextNode("-- Nodo de texto creado");
+      // 3.5 Se toma referencia a parrafo con el link en ele interiro, y se adjunto al nodo de texto
+      const linkPara = document.querySelector("p");
+      linkPara.appendChild(text);
+
+      // 4. Mover y remover elementos
+      sect.appendChild(linkPara); // Mueve linkPara a Section
+      sect.removeChild(linkPara); // Elimina el nodo linkPara
+      // o se puede usar lo siguiente, para eliminar directamente el nodo
+      linkPara.remove();
+
+      // // 5. Manipulación de estilos directamente desde javascript
+      // para.style.color = "white";
+      // para.style.backgroundColor = "black";
+      // para.style.padding = "10px";
+      // para.style.width = "250px";
+      // para.style.textAlign = "center";
+
+      // 5.2 Si se palica el estylo en el head del documento
+      para.setAttribute("class", "highlight");
+    </script>
+  </body>
+</html>

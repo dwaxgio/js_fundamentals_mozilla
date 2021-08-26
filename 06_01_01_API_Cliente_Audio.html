@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      input {
+        height: 1.5em;
+      }
+    </style>
+  </head>
+  <body>
+    <audio src="src/cancion.mp3"></audio>
+
+    <button class="paused">Play</button>
+    <br />
+    <input type="range" min="0" max="1" step="0.01" value="1" class="volume" />
+
+    <script>
+      // Crea un AudioContext
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      const audioCtx = new AudioContext();
+
+      // Almacenar referencias a los objetos HTML
+      const audioElement = document.querySelector("audio");
+      const playBtn = document.querySelector("button");
+      const volumeSlider = document.querySelector(".volume");
+
+      // Cargar la fuente del audio en el audio graph
+      const audioSource = audioCtx.createMediaElementSource(audioElement);
+
+      // Reproducir / pausar audio
+      playBtn.addEventListener("click", function () {
+        // Verifica si el contexto esta en estado suspendido
+        if (audioCtx.state === "suspended") {
+          audioCtx.resume();
+        }
+
+        // Si la pista esta en pausa, reproduzca
+        if (this.getAttribute("class") === "paused") {
+          audioElement.play();
+          this.setAttribute("class", "playing");
+          this.textContent = "Pause";
+          // Si la pista esta en reproducción, pausela
+        } else if (this.getAttribute("class") === "playing") {
+          audioElement.pause();
+          this.setAttribute("class", "paused");
+          this.textContent = "Play";
+        }
+      });
+
+      // Si la pista termina
+      audioElement.addEventListener("ended", function () {
+        playBtn.setAttribute("class", "paused");
+        playBtn.textContent = "Play";
+      });
+
+      // Volumen
+      const gainNode = audioCtx.createGain();
+
+      volumeSlider.addEventListener("input", function () {
+        gainNode.gain.value = this.value;
+      });
+
+      // Conecta el graph
+      audioSource.connect(gainNode).connect(audioCtx.destination);
+    </script>
+  </body>
+</html>
